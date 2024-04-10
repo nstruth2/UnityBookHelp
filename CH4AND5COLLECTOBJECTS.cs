@@ -42,20 +42,16 @@ void OnControllerColliderHit(ControllerColliderHit hit)
         if (label == "petrol_can")
         {
             nbPetrolCansCollected = nbPetrolCansCollected + 1;
-            print ("Collected "+ nbPetrolCansCollected + " can(s)");
+   GameObject.Find("userMessageUI").GetComponent<Text>().text = "You collected " + score +  " Can(s)!";;
             Destroy(hit.collider.gameObject); //Collecting the can
         }
         print("collision with "+ label);
         Destroy(hit.collider.gameObject);
         score = score + 1;
-        GameObject.Find("userMessageUI").GetComponent<Text>().text = "You collected " + score +  " Boxe(s)!";;
+     
         startDeleteMessage = true;
-        print ("Score: " + score);
-        if (score == 3)
-        {
-            SceneManager.LoadScene("outdoor");
-        }
-        if (hit.collider.gameObject.tag == "plane")
+    }
+    if (hit.collider.gameObject.tag == "plane")
         {
             if (nbPetrolCansCollected < 3)
             {
@@ -67,7 +63,6 @@ void OnControllerColliderHit(ControllerColliderHit hit)
                 GameObject.Find("userMessageUI").GetComponent<Text>().text = "Well done. You can now fly the plane and leave the island";
             }
         }
-    }
 }
 
 }
